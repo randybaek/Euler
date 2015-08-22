@@ -10,7 +10,7 @@ abstract class EulerApp {
     println(answer)
   }
 
-  val primes: scala.collection.mutable.MutableList[Long] = scala.collection.mutable.MutableList();
+  val primes: scala.collection.mutable.MutableList[Long] = scala.collection.mutable.MutableList()
 
   def addPrime(trial: Long): Unit = {
     //println("trying prime add with ", trial)

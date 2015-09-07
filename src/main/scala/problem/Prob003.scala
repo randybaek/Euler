@@ -1,3 +1,7 @@
+package problem
+
+import app.EulerApp
+
 /**
  * Created by wooyeolbaek on 10/13/14.
  */

@@ -1,5 +1,7 @@
+import problem.Prob003
+
 import scala.collection.mutable.MutableList
-import Prob003._
+import problem.Prob003._
 
 1 until 10
 Math.pow(4,2)

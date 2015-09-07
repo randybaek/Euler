@@ -9,7 +9,7 @@ mkdir -p target/classes
 
 printf -v NUM '%03d' $1
 echo "Compiling Prob$NUM.scala..."
-scalac -deprecation -d target/classes src/main/scala/EulerApp.scala src/main/scala/Prob$NUM.scala
+scalac -deprecation -d target/classes src/main/scala/app/EulerApp.scala src/main/scala/problem/Prob$NUM.scala
 if [ $? != 0 ]; then
     exit $?
 fi

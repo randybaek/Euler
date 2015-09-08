@@ -1,7 +1,7 @@
 package app
 
 /**
- * Created by wooyeolbaek on 10/10/14.
+ * Created by Randy Baek on 10/10/14.
  */
 abstract class EulerApp {
 
@@ -14,7 +14,7 @@ abstract class EulerApp {
 
   val primes: scala.collection.mutable.MutableList[Long] = scala.collection.mutable.MutableList()
 
-  def addPrime(trial: Long): Unit = {
+  private def addPrime(trial: Long): Unit = {
     //println("trying prime add with ", trial)
     if (isPrime(trial) ) {
       primes += trial

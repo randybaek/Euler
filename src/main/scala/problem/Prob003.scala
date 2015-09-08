@@ -3,7 +3,7 @@ package problem
 import app.EulerApp
 
 /**
- * Created by wooyeolbaek on 10/13/14.
+ * Created by Randy Baek on 10/13/14.
  */
 object Prob003 extends EulerApp{
   // 600851475143L
@@ -16,35 +16,40 @@ object Prob003 extends EulerApp{
 
   def largestPrimeOf(n: Long) : Long = {
 
-    findLargestFactor(n, 2)
+    findLargestFactor(n,2)
   }
 
 
-  def findLargestFactor(n: Long, a: Long): Long = {
+  /**
+   * from small factor 2, increase the factors and return the last factor
+   * */
+  def findLargestFactor(input: Long, factor: Long): Long = {
     //println("current lpn " + largestPrime)
     //println("finding Largest factor " + n, a)
-    if (a > n) largestPrime
+    // can't not factored anymore.
+    if (factor > input) largestPrime
     else {
-      val prime = nextPrime(a)
-      val exponent = findExponent(n, prime, 0)
+      val prime = nextPrime(factor)
+      val exponent = findExponent(input, prime, 0)
       //println("trying prime number " + prime + " to divide " + n)
       if (exponent != 0) {
         //println(n + " is divisible with " + prime + " for " + exponent + " times")
         largestPrime = prime
 
-        findLargestFactor((n / (Math.pow(prime, exponent))).toLong, prime)
+        findLargestFactor((input / (Math.pow(prime, exponent))).toLong, prime)
       }
-      else findLargestFactor(n, prime)
+      else findLargestFactor(input, prime)
     }
 
   }
 
-  def findExponent(n: Long, div: Long, exponent : Long): Long = {
+
+  // find x where factor^x = n  === logarithm function
+  def findExponent(n: Long, factor: Long, exponent : Long): Long = {
     //println("finding exponent... " + n, div, exponent)
-    if (n % div == 0 ) findExponent(n/div, div, exponent +1)
+    if (n % factor == 0 ) findExponent(n/factor, factor, exponent +1)
     else exponent
   }
-
 
 
 

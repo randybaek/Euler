@@ -13,13 +13,15 @@ abstract class EulerApp {
   }
 
   val primes: scala.collection.mutable.MutableList[Long] = scala.collection.mutable.MutableList()
+  primes += 2L
 
   private def addPrime(trial: Long): Unit = {
     //println("trying prime add with ", trial)
+
     if (isPrime(trial) ) {
       primes += trial
       //println("found new prime number! "+ trial)
-      }
+    }
     else
       addPrime(trial+1)
   }
@@ -41,6 +43,13 @@ abstract class EulerApp {
       //println(n + " is Prime!")
       true
     }
+  }
+
+  def tryPrime(trial: Long) = if (isPrime(trial)) primes += trial
+
+  def findPrimesUnder(n: Long) = {
+    (2L to n).map(tryPrime)
+    primes
   }
 
   def test : String  = "hi"

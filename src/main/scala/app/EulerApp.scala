@@ -33,7 +33,8 @@ abstract class EulerApp {
     primes.last
   }
 
-  // this can be only called after adding primes first
+  // this can be only called with simultaneous primes update
+  // TODO Improve this
   def isPrime(n: Long): Boolean = {
     // 1. n is not divided by any value of 2 ... n/2
     //println(n + " is .. ")
@@ -45,12 +46,23 @@ abstract class EulerApp {
     }
   }
 
-  def tryPrime(trial: Long) = if (isPrime(trial)) primes += trial
+  //TODO improve this
+  def tryPrime(trial: Long) = {
+    if (isPrime(trial)) primes += trial
+    else primes
+  }
 
   def findPrimesUnder(n: Long) = {
     (2L to n).map(tryPrime)
     primes
   }
+
+  def findNthPrime(n: Int) : Int = {
+    val lastNumberBeforeNthPrime = Stream.from(2) takeWhile (tryPrime(_).length < n) last
+
+    lastNumberBeforeNthPrime + 1
+  }
+
 
   def test : String  = "hi"
 

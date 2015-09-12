@@ -9,7 +9,11 @@ abstract class EulerApp {
   def answer : Any
 
   def main (args: Array[String]) {
+
+    val start = System.currentTimeMillis
     println(answer)
+    val end = System.currentTimeMillis
+    println("time taken =" + (end - start))
   }
 
   val primes: scala.collection.mutable.MutableList[Long] = scala.collection.mutable.MutableList()

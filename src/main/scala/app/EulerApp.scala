@@ -1,5 +1,5 @@
 package app
-
+import java.util.concurrent.TimeUnit
 /**
  * Created by Randy Baek on 10/10/14.
  */
@@ -13,7 +13,11 @@ abstract class EulerApp {
     val start = System.currentTimeMillis
     println(answer)
     val end = System.currentTimeMillis
-    println("time taken =" + (end - start))
+    val processingTime = end - start
+    val time_min = TimeUnit.MILLISECONDS.toMinutes(processingTime)
+    val time_sec = TimeUnit.MILLISECONDS.toSeconds(processingTime) - TimeUnit.MINUTES.toSeconds(time_min)
+
+    println(s"It took $time_min min $time_sec sec")
   }
 
   val primes: scala.collection.mutable.MutableList[Long] = scala.collection.mutable.MutableList()
@@ -50,12 +54,13 @@ abstract class EulerApp {
     }
   }
 
-  //TODO improve this
+
   def tryPrime(trial: Long) = {
     if (isPrime(trial)) primes += trial
     else primes
   }
 
+  // TODO Improve this
   def findPrimesUnder(n: Long) = {
     (2L to n).map(tryPrime)
     primes

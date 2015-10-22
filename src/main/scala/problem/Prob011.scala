@@ -15,18 +15,25 @@ object Prob011 extends EulerApp {
   def answer = greatestProductOfAdjacentNumbers(4)
 
   def greatestProductOfAdjacentNumbers(n: Int): Int = {
+
+    List(verticalMaximum(n), horizontalMaximum(n), diagonalMaximum(n)).reduceLeft(Math.max)
+
+  }
+
+  // per same column
+  def verticalMaximum(n: Int): Int = {
     // get list of vertical candidates
     val verticals = for ( i <- 0 to 19; arr <- matrix ) yield arr(i)
-    val vertical_max = verticals.toArray.grouped(20).toList
-      .map(findGreatestProductOfNAdjacentDigits(_, 4)).max
+    verticals.toArray.grouped(20).toList
+      .map(findGreatestProductOfNAdjacentDigits(_, n)).max
+  }
 
-    // get list of horizontal candidates
-    val horizontal_max = matrix.map(findGreatestProductOfNAdjacentDigits(_, 4)).max
+  // per same row
+  def horizontalMaximum(n: Int): Int = {
+    matrix.map(findGreatestProductOfNAdjacentDigits(_, n)).max
+  }
 
-    // get list of diagonal candidates
-    for (x <- 0 to 19; y <- 0 to 19) yield matrix(x)(y)
-    //filter list if elements are less then N
-
+  def diagonalMaximum(n: Int): Int = {
     // diagonal right down from right upper corner
     val startsFromUpperRight = (16 to 0 by -1 map ((0, _))) ++ (1 to 16 zip Stream.continually(0))
     // diagonal left down from left upper corner
@@ -43,21 +50,7 @@ object Prob011 extends EulerApp {
         (0 to 19).takeWhile(a => (a + start._1 < 20) & (start._2 -a > -1)).map(add => matrix(start._1 + add)(start._2 - add)).toArray
       }
     )
-
-    val diagonal_max = Math.max(ll.map(findGreatestProductOfNAdjacentDigits(_, 4)).max, dd.map(findGreatestProductOfNAdjacentDigits(_, 4)).max)
-
-    List(vertical_max, horizontal_max, diagonal_max).reduceLeft(Math.max)
-
-  }
-
-  // per same column
-  def verticalMaximum: Int = {
-    matrix(0)(0)
-  }
-
-  // per same row
-  def horizontalMaximum: Int = {
-    matrix.map(findGreatestProductOfNAdjacentDigits(_, 4)).max
+    Math.max(ll.map(findGreatestProductOfNAdjacentDigits(_, n)).max, dd.map(findGreatestProductOfNAdjacentDigits(_, n)).max)
   }
 
   // modified from Prob008

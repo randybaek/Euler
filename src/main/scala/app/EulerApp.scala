@@ -46,6 +46,7 @@ abstract class EulerApp {
   def isPrime(n: Long): Boolean = {
     // 1. n is not divided by any value of 2 ... n/2
     //println(n + " is .. ")
+    // TODO investigate efficiency of exits
     if (primes.exists(n % _ == 0))
       false
     else {
@@ -62,7 +63,8 @@ abstract class EulerApp {
 
   // TODO Improve this
   def findPrimesUnder(n: Long) = {
-    (2L to n).map(tryPrime)
+    // for big number, which one is better?  using stream vs. long range
+    (2L to n).filter(_ % 2 != 0).map(tryPrime)
     primes
   }
 
@@ -74,7 +76,6 @@ abstract class EulerApp {
 
 
   def test : String  = "hi"
-
 
 
 }

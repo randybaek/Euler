@@ -35,12 +35,10 @@ object Prob003 extends EulerApp{
       if (exponent != 0) {
         //println(n + " is divisible with " + prime + " for " + exponent + " times")
         largestPrime = prime
-
         findLargestFactor((input / (Math.pow(prime, exponent))).toLong, prime)
       }
       else findLargestFactor(input, prime)
     }
-
   }
 
 

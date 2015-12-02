@@ -6,3 +6,4 @@ findPrimesUnder(2000000L).sum
 val end = System.currentTimeMillis()
 val time = end - start
 TimeUnit.MILLISECONDS.toMinutes(end - start)
+

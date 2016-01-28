@@ -11,6 +11,8 @@ import scala.io.Source
 object Prob013 extends EulerApp {
   val file = new ClassPathResource("data/Prob013.txt").getFile
 
-  def answer = Source.fromFile(file).getLines().map(BigInt(_)).sum.toString.take(10)
+  def answer =
+    //Source.fromFile(file).getLines().map(BigInt(_)).sum.toString.take(10)
+    Source.fromFile(file).getLines().map(_.take(11).toLong).sum.toString.take(10)
 
 }
